@@ -3,7 +3,8 @@
 require_relative '../config/environment.rb'
 
 # test code goes here
+member1 = Lifter.new("Eddie")
 
 binding.pry
-
+0
 puts "Gains!"
