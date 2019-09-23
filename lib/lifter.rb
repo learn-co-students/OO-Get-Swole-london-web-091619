@@ -16,24 +16,23 @@ class Lifter
   end
 
   #method that returns all memberships that each lifter has
-  def lifter_membership
+  def memberships
     Membership.all.select { |member| member.lifters == self }
   end
 
   #method that lists all the gyms that 
   def gym_membership
-    Membership.all.select {|member| member.gym == self }
-
+    self.memberships.map {|membership| membership.gym }
   end
 
   #method to return the average lift total for all lifters
   def average_lift_total
-    self.all.map {|lifter| lifter.lift_total }
+    @@all.sum {|lifter| lifter.lift_total } / @@all.length
   end
 
   #method that returns the total cost of a specific lifters membership
   def total_cost_of_memberships
-    self.memberships.inject { |total, member| total += member.cost }
+    self.memberships.sum { |membership| membership.cost }
   end
 
   #method to sign a lifter to a new gym

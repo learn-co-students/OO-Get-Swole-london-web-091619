@@ -10,26 +10,26 @@ class Gym
   end
 
   #class getter method that returns a list of all gyms
-  def all
+  def self.all
     @@all
   end
 
   #method that returns all memberships at a specfic gym
-  def gym_lifters
-    Membership.all.select { |memeber| member.gym == self }
-
+  def membership
+    Membership.all.select { |memebership| membership.gym == self }
   end
 
   #method to return a list of all the lifters that havea a membership
-  def  gym_lifters_names
-    self.lifters.map {|memeber| member.name}
+  def lifters_names
+    lifters.map {|memeber| member.name}
   end
 
   #method returns the combined lift total of all lifters with memberships to that gym
   def lift_total
-    self.lifters.reduce(0) do |total, lifter|
-      total += lifter.lift_total
-      total
+    # lifters.reduce(0) do |total, lifter|
+    #   total += lifter.lift_total
+    #   total
+    lifers.sum { |lifter| lifter.lift_total }
   end
 
 end
